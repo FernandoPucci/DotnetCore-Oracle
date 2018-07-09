@@ -25,7 +25,7 @@ namespace EmployeesAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            OracleContext.ConnectionString = $"User Id=HR;Password=123456;Data Source=localhost:1521/xe";  
+            OracleContext.ConnectionString = $"User Id=HR;Password=123456;Data Source=c5-oracle.eastus.azurecontainer.io:1521/xe";
 
         }
 
@@ -37,7 +37,13 @@ namespace EmployeesAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            //  //       app.UseMvc();
+            app.UseMvc(routes =>
+                        {
+                            routes.MapRoute(
+                                name: "default",
+                                template: "{controller=Home}/{action=Index}");
+                        });
         }
     }
 }
