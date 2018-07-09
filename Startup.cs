@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace EmployeesAPI
 {
@@ -25,6 +26,10 @@ namespace EmployeesAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddSwaggerGen(c =>
+                                    {
+                                        c.SwaggerDoc("v1", new Info { Title = "Employees API", Version = "v1" });
+                                    });
             OracleContext.ConnectionString = $"User Id=HR;Password=123456;Data Source=c5-oracle.eastus.azurecontainer.io:1521/xe";
 
         }
@@ -37,7 +42,12 @@ namespace EmployeesAPI
                 app.UseDeveloperExceptionPage();
             }
 
-            //  //       app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+                                {
+                                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Employees API V1");
+                                });
+                                
             app.UseMvc(routes =>
                         {
                             routes.MapRoute(
