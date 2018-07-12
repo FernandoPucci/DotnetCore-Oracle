@@ -21,7 +21,8 @@ namespace EmployeesAPI.OracleHelpers
             }
             catch (System.Exception ex)
             {
-                throw ex;
+                var ms =  $"User Id=HR;Password=123456;Data Source={Environment.GetEnvironmentVariable("DB_ENVIRONMENT")} --- {ex.Message}";
+                throw new System.Exception(ms, ex);
             }
         }
         private static void Close()

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeesAPI.OracleHelpers;
@@ -30,7 +31,11 @@ namespace EmployeesAPI
                                     {
                                         c.SwaggerDoc("v1", new Info { Title = "Employees API", Version = "v1" });
                                     });
-            OracleContext.ConnectionString = $"User Id=HR;Password=123456;Data Source=c5-oracle.eastus.azurecontainer.io:1521/xe";
+            
+            OracleContext.ConnectionString = $"User Id=HR;Password=123456;Data Source={Environment.GetEnvironmentVariable("DB_ENVIRONMENT")}";
+
+            Console.WriteLine($"User Id=HR;Password=123456;Data Source={Environment.GetEnvironmentVariable("DB_ENVIRONMENT")}");
+            Debug.WriteLine($"User Id=HR;Password=123456;Data Source={Environment.GetEnvironmentVariable("DB_ENVIRONMENT")}");
 
         }
 

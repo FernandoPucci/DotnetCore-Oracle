@@ -7,3 +7,7 @@ ENTRYPOINT ["dotnet", "EmployeesAPI.dll"]
 
 #.NET Core applcation vs. Docker 
 # https://automationrhapsody.com/build-a-rest-api-with-net-core-2-and-run-it-on-docker-linux-container/ 
+# before  build run 
+# $ dotnet publish --configuration=Release -o pub
+# after build
+# $ docker build -t employees-rest:latest .
