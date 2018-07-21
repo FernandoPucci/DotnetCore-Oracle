@@ -1,6 +1,19 @@
 version: "2"
 
+
 services:
+ 
+  db:
+      image: fsilvapucci/employee-oracle-db:latest
+      container_name: employees-db
+      ports: 
+        - "1521:1521"
+      volumes:
+        - "./oracle/data:/u01/app/oracle"
+      networks:
+        - front-tier
+        - back-tier
+
   api:
     image: fsilvapucci/employees-rest:latest
     container_name: employees-api
@@ -14,17 +27,7 @@ services:
       - "8080:8080"
     networks:
       - front-tier
-      - back-tier 
-  db:
-    image: fsilvapucci/employee-oracle-db:latest
-    container_name: employees-db
-    ports: 
-      - "1521:1521"
-    volumes:
-      - "/my/oracle/data:/u01/app/oracle"
-    networks:
-      - front-tier
-      - back-tier
+      - back-tier   
 
 volumes:
   db-data:

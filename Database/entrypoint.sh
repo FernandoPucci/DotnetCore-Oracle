@@ -49,7 +49,7 @@ case "$1" in
 		fi
 
 		/etc/init.d/oracle-xe start
-		echo "Database ready to use. Enjoy! ;)"
+		echo "Database ready to use. Enjoy! Brother! ###################################### ;)"
 
 		if [ "$DATABASES" == "" ]; then
 			echo "If you want to create DBs automatically specify DATABASES environment variable";

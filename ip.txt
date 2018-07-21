@@ -1,0 +1,42 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "employees",
+    "namespace": "default",
+    "selfLink": "/api/v1/namespaces/default/services/employees",
+    "uid": "969c3621-84ac-11e8-8c8d-0a58ac1f0a24",
+    "resourceVersion": "184735",
+    "creationTimestamp": "2018-07-11T01:49:03Z",
+    "labels": {
+      "k8s-app": "employees"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "name": "tcp-8080-8080-hs8h8",
+        "protocol": "TCP",
+        "port": 8080,
+        "targetPort": 8080,
+        "nodePort": 31966
+      }
+    ],
+    "selector": {
+      "k8s-app": "employees"
+    },
+    "clusterIP": "10.0.88.245",
+    "type": "LoadBalancer",
+    "sessionAffinity": "None",
+    "externalTrafficPolicy": "Cluster"
+  },
+  "status": {
+    "loadBalancer": {
+      "ingress": [
+        {
+          "ip": "137.117.84.211"
+        }
+      ]
+    }
+  }
+}
