@@ -13,7 +13,7 @@ namespace EmployeesAPI.Controllers
         [HttpGet]
         public IEnumerable<Employees> Get()
         {
-            string sql = "select EMPLOYEE_ID, FIRST_NAME, LAST_NAME from Employees";
+            string sql = $"select EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID,SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID from Employees";
             List<Employees> temps = OracleContext.QueryForList<Employees>(sql).ToList();
             return temps;
         }
@@ -22,7 +22,7 @@ namespace EmployeesAPI.Controllers
         [HttpGet("{id}")]
         public  IActionResult GetById(long id)
         {
-            string sql = "select EMPLOYEE_ID, FIRST_NAME, LAST_NAME from Employees";
+            string sql = $"select EMPLOYEE_ID, FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRE_DATE, JOB_ID,SALARY, COMMISSION_PCT, MANAGER_ID, DEPARTMENT_ID from Employees";
             List<Employees> temps = OracleContext.QueryForList<Employees>(sql).Where(e => e.EMPLOYEE_ID == id).ToList();
 
             if (temps.Count() == 0)
