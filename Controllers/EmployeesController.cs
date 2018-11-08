@@ -4,6 +4,7 @@ using EmployeesAPI.Model;
 using EmployeesAPI.OracleHelpers;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace EmployeesAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -12,10 +13,22 @@ namespace EmployeesAPI.Controllers
         [HttpGet]
         public IEnumerable<Employees> Get()
         {
-            string sql = "select EMPLOYEE_ID, FIRST_NAME, LAST_NAME from Employees";  
-            List<Employees> temps = OracleContext.QueryForList<Employees>(sql).ToList();  
+            string sql = "select EMPLOYEE_ID, FIRST_NAME, LAST_NAME from Employees";
+            List<Employees> temps = OracleContext.QueryForList<Employees>(sql).ToList();
             return temps;
         }
-        
+
+
+        [HttpGet("{id}")]
+        public  IActionResult GetById(long id)
+        {
+            string sql = "select EMPLOYEE_ID, FIRST_NAME, LAST_NAME from Employees";
+            List<Employees> temps = OracleContext.QueryForList<Employees>(sql).Where(e => e.EMPLOYEE_ID == id).ToList();
+
+            if (temps.Count() == 0)
+                return NotFound();
+            else
+                return Ok(temps);
+        }
     }
 }

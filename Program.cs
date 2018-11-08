@@ -21,6 +21,7 @@ namespace EmployeesAPI
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseUrls("http://localhost:5050")
                 .Build();
     }
 }
